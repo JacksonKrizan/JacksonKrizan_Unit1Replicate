@@ -1,11 +1,10 @@
 using UnityEngine;
-using System.Collection.Generic;
-using System.Collection;
 
 public class GMScript : MonoBehaviour
 {
 
     public GameObject bomb;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,9 +16,12 @@ public class GMScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Destroy(bomb);
+            DestroyObject(bomb);
         }
     }
-
+    void DestroyObject(GameObject bomb)
+    {
+        Destroy(bomb);
+    }
 
 }
