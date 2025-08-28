@@ -5,55 +5,73 @@ using TMPro;
 public class DestoryTextbox : MonoBehaviour
 {
     public GameObject bomb;
-    public GameObject explosion;
-    //public InputField myInputField;
+
     public TMP_InputField myInputField;
-    public TextMeshProUGUI displayText;
-    public TextMeshProUGUI HealthText;
+    public TMP_Text numbersCounted;
+    
+    public AudioSource explode;
+
+    public int millionForDumbies;
+    public bool millionOn;
     private string inputText;
-    public AudioSource explodeSound;
-    public int health = 10;
+    private string millionFor;
 
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        explodeSound = GetComponent<AudioSource>();
+        explode = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
-        {
-            HealthText.text = "Health: " + health.ToString();
-            DestroyObject(bomb);
-            explodeSound.Play();
-            Debug.Log("blew up");
-        }
-        else
-        {
-            HealthText.text = "Health: " + health.ToString();
-        }
-
-
 
     string inputText = myInputField.text;
+
+    if (inputText == "Count to a million")
+    {
+        millionOn = true;
+    }
+
+    if (millionOn == true)
+    {
+        millionFor = millionForDumbies.ToString();
+        millionForDumbies = millionForDumbies + 1;
+        Debug.Log(millionForDumbies);
+        numbersCounted.text = millionForDumbies.ToString();
+    }
+
+
 
     if (inputText == "Jarvis Blow Up")
     {
         DestroyObject(bomb);
-        explodeSound.Play();
+        explode.Play();
         Debug.Log("blew up");
         // Perform actions when the condition is met
     }
-    else if (inputText.ToLower() == "exit") // Case-insensitive comparison
+
+    if (inputText.ToLower() == "exit") // Case-insensitive comparison
     {
         Debug.Log("Exiting application...");
         Application.Quit(); // Example action
     }
+
+    if (inputText.ToLower() == "Count to a million") // Case-insensitive comparison
+    {
+        millionOn = true;
+
+    }
+
+    if (inputText.ToLower() == "Stop") // Case-insensitive comparison
+    {
+        millionOn = false;
+
+    }
     else
     {
         Debug.Log("Input was: " + inputText);
+
     }
 
     void DestroyObject(GameObject bomb)
