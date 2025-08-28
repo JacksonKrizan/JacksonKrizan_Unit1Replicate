@@ -5,26 +5,44 @@ using TMPro;
 public class DestoryTextbox : MonoBehaviour
 {
     public GameObject bomb;
+    public GameObject explosion;
     //public InputField myInputField;
     public TMP_InputField myInputField;
+    public TextMeshProUGUI displayText;
+    public TextMeshProUGUI HealthText;
     private string inputText;
-    public AudioSource explode;
+    public AudioSource explodeSound;
+    public int health = 10;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
-        explode = GetComponent<AudioSource>();
+        explodeSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0)
+        {
+            HealthText.text = "Health: " + health.ToString();
+            DestroyObject(bomb);
+            explodeSound.Play();
+            Debug.Log("blew up");
+        }
+        else
+        {
+            HealthText.text = "Health: " + health.ToString();
+        }
+
+
+
     string inputText = myInputField.text;
 
     if (inputText == "Jarvis Blow Up")
     {
         DestroyObject(bomb);
-        explode.Play();
+        explodeSound.Play();
         Debug.Log("blew up");
         // Perform actions when the condition is met
     }
