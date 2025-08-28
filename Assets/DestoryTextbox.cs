@@ -5,10 +5,16 @@ using TMPro;
 public class DestoryTextbox : MonoBehaviour
 {
     public GameObject bomb;
-    //public InputField myInputField;
+
     public TMP_InputField myInputField;
-    private string inputText;
+    public TMP_Text numbersCounted;
+    
     public AudioSource explode;
+
+    public int millionForDumbies;
+    public bool millionOn;
+    private string inputText;
+    private string millionFor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,7 +25,17 @@ public class DestoryTextbox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     string inputText = myInputField.text;
+
+    if (millionOn == true)
+    {
+        millionForDumbies =+ 1;
+        Debug.Log(millionForDumbies);
+        numbersCounted == millionFor;
+    }
+
+
 
     if (inputText == "Jarvis Blow Up")
     {
@@ -28,14 +44,28 @@ public class DestoryTextbox : MonoBehaviour
         Debug.Log("blew up");
         // Perform actions when the condition is met
     }
-    else if (inputText.ToLower() == "exit") // Case-insensitive comparison
+
+    if (inputText.ToLower() == "exit") // Case-insensitive comparison
     {
         Debug.Log("Exiting application...");
         Application.Quit(); // Example action
     }
+
+    if (inputText.ToLower() == "Count to a million") // Case-insensitive comparison
+    {
+        millionOn == true;
+
+    }
+
+    if (inputText.ToLower() == "Stop counting to a million") // Case-insensitive comparison
+    {
+        millionOn == false;
+
+    }
     else
     {
         Debug.Log("Input was: " + inputText);
+
     }
 
     void DestroyObject(GameObject bomb)
