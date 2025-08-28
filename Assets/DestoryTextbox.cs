@@ -28,11 +28,17 @@ public class DestoryTextbox : MonoBehaviour
 
     string inputText = myInputField.text;
 
+    if (inputText == "Count to a million")
+    {
+        millionOn = true;
+    }
+
     if (millionOn == true)
     {
-        millionForDumbies =+ 1;
+        millionFor = millionForDumbies.ToString();
+        millionForDumbies = millionForDumbies + 1;
         Debug.Log(millionForDumbies);
-        numbersCounted == millionFor;
+        numbersCounted.text = millionForDumbies.ToString();
     }
 
 
@@ -53,13 +59,13 @@ public class DestoryTextbox : MonoBehaviour
 
     if (inputText.ToLower() == "Count to a million") // Case-insensitive comparison
     {
-        millionOn == true;
+        millionOn = true;
 
     }
 
-    if (inputText.ToLower() == "Stop counting to a million") // Case-insensitive comparison
+    if (inputText.ToLower() == "Stop") // Case-insensitive comparison
     {
-        millionOn == false;
+        millionOn = false;
 
     }
     else
